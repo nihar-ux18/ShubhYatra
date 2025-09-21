@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityTransit - Real-Time Bus Tracking</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-bus"></i>
+                <h1>ShubhYatra</h1>
+            </div>
+            <nav class="nav">
+                <button id="logoutBtn" class="btn btn-secondary" style="display: none;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Screen -->
+            <section id="welcomeScreen" class="screen active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <i class="fas fa-map-marked-alt hero-icon"></i>
+                        <h2>Real-Time Bus Tracking</h2>
+                        <p>Track your bus in real-time for a smarter commute</p>
+                    </div>
+                    <div class="role-selection">
+                        <button id="driverBtn" class="role-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 018 8c0 1.76-.57 3.39-1.53 4.71l-2.12-2.12A5.98 5.98 0 0018 12a6 6 0 10-6 6c1.3 0 2.48-.42 3.43-1.15l2.12 2.12A7.96 7.96 0 0112 20a8 8 0 010-16zm-.5 3v5.79l-4.21 4.2-1.42-1.42L10 11.59V7h1.5z"/>
+                            </svg>
+                            <span>I'm a Driver</span>
+                        </button>
+                        <button id="passengerBtn" class="role-btn">
+                            <i class="fas fa-user"></i>
+                            <span>I'm a Passenger</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Driver Login -->
+            <section id="driverLogin" class="screen">
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 018 8c0 1.76-.57 3.39-1.53 4.71l-2.12-2.12A5.98 5.98 0 0018 12a6 6 0 10-6 6c1.3 0 2.48-.42 3.43-1.15l2.12 2.12A7.96 7.96 0 0112 20a8 8 0 010-16zm-.5 3v5.79l-4.21 4.2-1.42-1.42L10 11.59V7h1.5z"/>
+                        </svg>
+                        <h2>Driver Login</h2>
+                    </div>
+                    <form id="driverLoginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="driverEmail">Email</label>
+                            <input type="email" id="driverEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="driverPassword">Password</label>
+                            <input type="password" id="driverPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    <button id="backToWelcome1" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+            </section>
+
+            <!-- Passenger Login -->
+            <section id="passengerLogin" class="screen">
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <i class="fas fa-user"></i>
+                        <h2>Passenger Login</h2>
+                    </div>
+                    <form id="passengerLoginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="passengerEmail">Email</label>
+                            <input type="email" id="passengerEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passengerPassword">Password</label>
+                            <input type="password" id="passengerPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    <button id="backToWelcome2" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+            </section>
+
+            <!-- Driver Dashboard -->
+            <section id="driverDashboard" class="screen">
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <h2>Driver Dashboard</h2>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="card">
+                            <h3><i class="fas fa-bus"></i> Bus Registration</h3>
+                            <form id="busRegistrationForm">
+                                <div class="form-group">
+                                    <label for="busNumber">Bus Registration Number</label>
+                                    <input type="text" id="busNumber" placeholder="e.g., CT-1234" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Start Trip
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Driver Tracking -->
+            <section id="driverTracking" class="screen">
+                <div class="tracking-container">
+                    <div class="tracking-header">
+                        <i class="fas fa-satellite-dish"></i>
+                        <h2>GPS Tracking Active</h2>
+                    </div>
+                    <div class="tracking-info">
+                        <div class="info-card">
+                            <i class="fas fa-bus"></i>
+                            <div>
+                                <h4>Bus Number</h4>
+                                <p id="activeBusNumber">-</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Current Location</h4>
+                                <p id="currentLocation">Updating...</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Trip Duration</h4>
+                                <p id="tripDuration">00:00:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gps-status">
+                        <div class="status-indicator active">
+                            <i class="fas fa-satellite-dish"></i>
+                            GPS Connected
+                        </div>
+                    </div>
+                    <button id="stopTripBtn" class="btn btn-danger">
+                        <i class="fas fa-stop"></i> Stop Trip
+                    </button>
+                </div>
+            </section>
+
+            <!-- Passenger Search -->
+            <section id="passengerSearch" class="screen">
+                <div class="search-container">
+                    <div class="search-header">
+                        <i class="fas fa-search"></i>
+                        <h2>Find Your Bus</h2>
+                    </div>
+                    <form id="busSearchForm" class="search-form">
+                        <div class="form-group">
+                            <label for="searchBusNumber">Bus Registration Number</label>
+                            <input type="text" id="searchBusNumber" placeholder="e.g., CT-1234" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Track Bus
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Bus Results -->
+            <section id="busResults" class="screen">
+                <div class="results-container">
+                    <div class="results-header">
+                        <i class="fas fa-map"></i>
+                        <h2>Bus Location</h2>
+                    </div>
+                    <div class="bus-info-card">
+                        <div class="bus-header">
+                            <i class="fas fa-bus"></i>
+                            <h3 id="resultsBusNumber">CT-1234</h3>
+                            <span id="busStatus" class="status-badge active">Active</span>
+                        </div>
+                        <div class="location-info">
+                            <div class="location-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Current Location</h4>
+                                    <p id="busLocation">Main Street & 2nd Avenue</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <div id="busMap" class="map-placeholder">
+                            <i class="fas fa-map"></i>
+                            <p>Interactive map showing bus location</p>
+                            <div class="map-marker">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stops-container">
+                        <h3><i class="fas fa-clock"></i> Upcoming Stops</h3>
+                        <div class="stops-list">
+                            <div class="stop-item">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="stop-info">
+                                    <h4>City Center</h4>
+                                    <p class="arrival-time">Arrives in 3 minutes</p>
+                                </div>
+                            </div>
+                            <div class="stop-item">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="stop-info">
+                                    <h4>University Campus</h4>
+                                    <p class="arrival-time">Arrives in 8 minutes</p>
+                                </div>
+                            </div>
+                            <div class="stop-item">
+                                <i class="fas fa-map-pin"></i>
+                                <div class="stop-info">
+                                    <h4>Shopping Mall</h4>
+                                    <p class="arrival-time">Arrives in 15 minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="searchAnotherBtn" class="btn btn-secondary">
+                        <i class="fas fa-search"></i> Search Another Bus
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
